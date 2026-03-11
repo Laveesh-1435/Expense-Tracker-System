@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import javax.swing.JTextArea;
 
 public class BudgetManager {
     private double monthlyBudget = 0;
@@ -31,5 +32,29 @@ public class BudgetManager {
         } else if (percentageUsed > 75) {
             System.out.println("🔶 Budget usage is high.");
         }
+    }
+
+    // GUI
+    public void setMonthlyBudgetGUI(double budget) {
+        this.monthlyBudget = budget;
+    }
+
+    public void displayBudgetStatusGUI(JTextArea area) {
+        if (monthlyBudget == 0) {
+            area.append("❌ No budget set! Use 'Set Budget' button.\n");
+            return;
+        }
+        
+        double remaining = monthlyBudget - monthlySpent;
+        double percentage = (monthlySpent / monthlyBudget) * 100;
+        
+        area.append("Monthly Budget: ₹" + String.format("%.2f", monthlyBudget) + "\n");
+        area.append("Spent: ₹" + String.format("%.2f", monthlySpent) + " (" + 
+                    String.format("%.1f", percentage) + "%)\n");
+        area.append("Remaining: ₹" + String.format("%.2f", remaining) + "\n\n");
+        
+        if (percentage > 90) area.append("⚠️  CRITICAL - Budget almost gone!\n");
+        else if (percentage > 75) area.append("🔶 HIGH usage - Be careful!\n");
+        else area.append("✅ Good budget control!\n");
     }
 }

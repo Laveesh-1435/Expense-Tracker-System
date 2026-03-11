@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.swing.JTextArea;
 
 public class ReportGenerator {
     private final ExpenseTracker tracker;
@@ -48,5 +49,9 @@ public class ReportGenerator {
                     (entry.getValue() / totalSpent) * 100
                 )
             );
+    }
+
+    void generateMonthlyReportGUI(JTextArea displayArea) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
